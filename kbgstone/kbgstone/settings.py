@@ -149,23 +149,12 @@ JAZZMIN_SETTINGS = {
 }
 
 
-# STATIC_DIRS = [
-#     BASE_DIR/"static"
-# ]
-
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-# EMAIL_HOST_USER = 'parkwaykbg@gmail.com'
-# EMAIL_HOST_PASSWORD ='jrpidaqjxzynwwhj'
+
 EMAIL_HOST_USER = 'niloy.islam@kbgbd.com.au'
 EMAIL_HOST_PASSWORD ='fxlwllblpgupiggl'
 
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST = 'smtp.office365.com' # replace with the SMTP server of your organization
-# EMAIL_PORT = 587
-# EMAIL_USE_TLS = True
-# EMAIL_HOST_USER = 'info@kbgbd.com.au'
-# EMAIL_HOST_PASSWORD = None
