@@ -84,7 +84,7 @@ def contact(request):
         recipient_list =[email,]  
         send_mail(subject, message, from_email, recipient_list, fail_silently=False)
 
-        return render(request, 'success.html', {'message': 'Your form has been submitted successfully!'}) 
+        return render(request, 'success.html', {'message': 'Your form has been submitted successfully! We will contact with you soon.'}) 
     else:
         return render(request, 'index.html')
 

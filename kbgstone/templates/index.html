@@ -417,44 +417,6 @@
       </section><!-- End Events Section -->
 
 
-
-
-            <!-- PopUp -->
-            <!-- <div class="popup hide-popup">
-            <div class="popup-content">
-                <div class="popup-close">
-                <i class='bx bx-x'></i>
-                </div>
-                <div class="popup-left">
-                <div class="popup-img-container">
-                    <img class="popup-img" src="{% static 'assets/img/Stone/marble/circle/marble pop.jpg' %}" alt="popup">
-                </div>
-              </div>
-              <div class="popup-right">
-                <div class="right-content">
-                  <h1>Welcome to <span>KBG STONE</span> </h1>
-                  <p>Australia's Top Marble Company Which Provides A Grade Quality. Retailer Manufacturer & Wholesaler.
-                  </p>
-                  <form method="post" action="{%url 'popup'%}" >
-                    {% csrf_token %}
-                      <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
-
-                     <br>
-                      <input type="text" class="form-control" name="number" id="number" placeholder="Your Number" required> 
-                      <br>
-                      <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" >
-                      <br> <input type="text" class="form-control" name="postcode" id="postcode" placeholder="Your Postcode" >
-                      <br>
-                        <div class="btn-menu animated fadeInUp scrollto" >
-                          <button type="submit" value="submit" name="save">Submit</button>
-                        </div> 
-                    </form>
-                    
-                  </div>
-                </div>
-            </div>
-        </div>  -->
-
         {% if not request.COOKIES.pop_up_seen %}
                                 <!-- PopUp -->
                 <div class="popup hide-popup ">
@@ -492,19 +454,15 @@
              {% endif %}
                 <script>
                   // Check if the form has been submitted before
-                  if (localStorage.getItem('formSubmitted')) {
-                    // Form has been submitted before, hide the pop-up
+                  if (localStorage.getItem('formSubmitted')) {                   
                     document.querySelector('.popup').classList.add('hide-popup');
-                  }
-                  
-                  // Listen for the form submission event
-                  document.querySelector('.popup form').addEventListener('submit', function() {
-                    // Set the formSubmitted key in local storage
-                    localStorage.setItem('formSubmitted', 'true');
-                    
-                    // Hide the pop-up
+                  }                               
+                  document.querySelector('.popup form').addEventListener('submit', function() {                    
+                    localStorage.setItem('formSubmitted', 'true');                    
                     document.querySelector('.popup').classList.add('hide-popup');
+                    window.alert("Thank you for your Information.")
                   });
+                  
                   
                 </script>
 
