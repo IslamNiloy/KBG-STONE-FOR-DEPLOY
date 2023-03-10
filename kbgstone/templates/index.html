@@ -455,9 +455,9 @@
             </div>
         </div>  -->
 
-
+        {% if not request.COOKIES.pop_up_seen %}
                                 <!-- PopUp -->
-                <div class="popup hide-popup{% if not request.COOKIES.pop_up_seen %} {% endif %}">
+                <div class="popup hide-popup ">
                   <div class="popup-content">
                     <div class="popup-close">
                       <i class='bx bx-x'></i>
@@ -489,7 +489,7 @@
                     </div>
                   </div>
                 </div>
-
+             {% endif %}
                 <script>
                   // Check if the form has been submitted before
                   if (localStorage.getItem('formSubmitted')) {
