@@ -31,7 +31,9 @@
   <!-- Template Main CSS File -->
   <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
   <link href="{% static 'assets/css/styles.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/css/confirmation.css' %}" rel="stylesheet">
   <!-- <link href="{% static 'assets/css/rating.css' %}" rel="stylesheet"> -->
+  
 </head>
 
 <body>
@@ -184,6 +186,11 @@
 <!-- Template Main JS File -->
 <script src="{% static 'assets/js/main.js' %}"></script>
 <!-- <script src="{% static 'assets/js/popup.js' %}"></script> -->
+<script>
+  $(document).ready(function() {
+    alert('{{ message }}');
+  });
+</script>
 
   </body>
 </html>

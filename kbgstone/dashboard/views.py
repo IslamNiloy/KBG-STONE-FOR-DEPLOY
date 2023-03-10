@@ -21,38 +21,7 @@ def contactus_page(request):
 def appointment_page(request):
    return render(request,'appointment.html')
 
-def all_product_page(request):
-    return render(request,'product.html')
-
-def product_page1(request):
-    return render(request,'Product_Calacatta_Carrara.html')
-
-def product_page2(request):
-    return render(request,'Product_Calacatta-Oro.html')
-
-def product_page3(request):
-    return render(request,'Product_crema_penta_light.html')
-
-def product_page4(request):
-    return render(request,'Product_Crema_penta-dark.html')
-
-def product_page5(request):
-    return render(request,'Product_Emperador Dark.html')
-
-def product_page6(request):
-    return render(request,'Product_mugla_white.html')
-
-def product_page7(request):
-    return render(request,'Product_Panda Book Match.html')
-
-def product_page8(request):
-    return render(request,'Product_Zebrino.html')
-
-
-
-# Appointment Form
-
-
+#Appointment Form
 def appointment_form(request):
     if request.method == 'POST':
         name = request.POST.get('name')
@@ -61,6 +30,10 @@ def appointment_form(request):
         appointment_date = request.POST.get('return')
         appointment_time = request.POST.get('Time')
       
+        # Check if appointment already exists for the same date and time
+        if Appointment.objects.filter(appointment_date=appointment_date, appointment_time=appointment_time).exists():
+            return render(request, 'booking_failed.html', {'message': 'This time slot is not available. Please choose another time.'})
+
         appointment = Appointment(
                 name=name,
                 email=email,
@@ -69,23 +42,25 @@ def appointment_form(request):
                 appointment_time=appointment_time,
             )
         appointment.save()
-
-        # slot = AvailableSlot.objects.get(date=appointment_date, time=appointment_time)
-        # slot.delete()
-
-            # send confirmation email to user
+        
+        # send confirmation email to user
         subject = 'Appointment Request Confirmation'
         message = f'Dear {name},\n\nThank you for booking an appointment with us! We are looking forward to meeting with you on {appointment_date} at {appointment_time} for your scheduled appointment.\n\nWe wanted to confirm the details of your appointment:\nAppointment Date:  {appointment_date}\nAppointment Time:  {appointment_time}\nDuration: 1 Hour\nLocation:Unit 6, 1003-1009 Canley Vale Road, Wetherill Park, NSW, Australia 2164\n\nPlease note that if you need to cancel or reschedule your appointment, we kindly ask that you provide us with at least 24 hours notice. This allows us to offer your appointment slot to other clients who may be on a waiting list.\nIf you have any questions or concerns regarding your appointment, please do not hesitate to contact us at [Mobile: +61 451 210 406]. We are always happy to help!\nThank you for choosing our business for your needs. We look forward to providing you with exceptional service and a great experience.\n\nBest regards,\nKBG STONE'
         from_email = 'info@kbgstone.com.au'  # replace with your email address
         recipient_list =[email,]  # replace with the email address of the user who submitted the form
         send_mail(subject, message, from_email, recipient_list, fail_silently=False)
 
-           
-
-        return render(request, 'success.html', {'message': 'Booking successful!'})
+        return render(request, 'success.html', {'message': f'\nThank you {name} for booking an appointment with us! We are looking forward to meeting with you on {appointment_date} at {appointment_time} for your scheduled appointment. An email has been sent to you.'})
 
     return render(request, 'appointment.html')
-    
+
+
+
+
+
+
+
+
 
 # Contact Form
 def contact(request):
@@ -106,16 +81,11 @@ def contact(request):
           # send confirmation email to user
         subject = 'Contact With KBG'
         message = f'Hi {name},\n\nThank you for contacting with us.We will Contact with you soon.\n\nBest regards,\nThe Appointment Team\nKBG STONE'
-        
-
-
         from_email = 'info@kbgstone.com.au'  # replace with your email address
         recipient_list =[email,]  # replace with the email address of the user who submitted the form
         send_mail(subject, message, from_email, recipient_list, fail_silently=False)
 
-        return render(request, 'success.html', {'message': 'Your form has been submitted successfully!'})
-
-        
+        return render(request, 'success.html', {'message': 'Your form has been submitted successfully!'}) 
     else:
         return render(request, 'index.html')
 
@@ -135,8 +105,6 @@ def popup(request):
         # Save form submission to database
         submission = PopUpSubmission(name=name, number=number, email=email, postcode=postcode)
         submission.save()
-
-
         response = redirect('home')  # Replace 'home' with the name of your home page URL pattern
         response.set_cookie('pop_up_seen', 'true')
         return response
@@ -153,16 +121,6 @@ def popup(request):
 
 
     
-    
-#All Product 
-def all_products(request):
-    products = Product.objects.all()
-    context = {
-        'products': products
-    }
-    return render(request, 'all_products.html', context)
-
-
 
 def product_list(request):
     products = Product.objects.all()

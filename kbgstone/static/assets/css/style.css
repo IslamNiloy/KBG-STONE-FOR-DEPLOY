@@ -131,12 +131,22 @@ h6 {
 /*--------------------------------------------------------------
 # Top Bar
 --------------------------------------------------------------*/
+/* #topbar {
+  height: 40px;
+  font-size: 14px;
+  transition: all 0.5s;
+  z-index: 996;
+  background-color: #000000ef;
+} */
 #topbar {
   height: 40px;
   font-size: 14px;
   transition: all 0.5s;
   z-index: 996;
   background-color: #000000ef;
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
 
 #topbar.topbar-scrolled {
@@ -176,17 +186,31 @@ h6 {
   color: rgba(255, 255, 255, 0.5);
   content: "/";
 }
+#content {
+  margin-top: 80px; /* Height of topbar + height of header */
+}
 
 /*--------------------------------------------------------------
 # Header
 --------------------------------------------------------------*/
-#header {
+/* #header {
+  position:fixed;
   background: rgba(210, 199, 199, 0.764);
   border-bottom: 1px solid rgba(12, 11, 9, 0.6);
   transition: all 0.5s;
   z-index: 997;
   padding: 15px 0;
   top: 40px;
+} */
+#header {
+  position: fixed;
+  background: rgba(210, 199, 199, 0.764);
+  border-bottom: 1px solid rgba(12, 11, 9, 0.6);
+  transition: all 0.5s;
+  z-index: 997;
+  padding: 15px 0;
+  top: 40px;
+  width: 100%;
 }
 
 #header.header-scrolled {
@@ -249,6 +273,7 @@ h6 {
 * Desktop Navigation 
 */
 .navbar {
+  
   padding: 0;
 }
 
